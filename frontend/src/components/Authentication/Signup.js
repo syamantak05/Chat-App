@@ -2,6 +2,9 @@ import { Button, FormControl, FormLabel, Input, InputGroup, InputRightElement, V
 import React, { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { ChatState } from "../../Context/ChatProvider";
+
+
 
 const Signup = () => {
     const [show, setShow] = useState(false);
@@ -13,6 +16,7 @@ const Signup = () => {
     const [confirmpassword, setConfirmpassword] = useState("");
     const [pic, setPic] = useState();
     const [picLoading, setLoading] = useState(false); // Added picLoading state
+    const {user, setUser} = ChatState();
     const history = useHistory();
     //const [loading, setLoading] = useState(false);
     const toast = useToast(); // Added useToast hook
@@ -108,6 +112,7 @@ const Signup = () => {
             });
 
             localStorage.setItem('userInfo', JSON.stringify(data.data));
+            setUser(data.data);
 
             setLoading(false);
             history.push("/chats");
