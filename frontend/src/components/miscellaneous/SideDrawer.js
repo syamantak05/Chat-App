@@ -20,12 +20,13 @@ const SideDrawer = () => {
     const [loading, setLoading] = useState(false);
     const [loadingChat, setLoadingChat] = useState(false);
 
-    const { user, setSelectedChat, chats, setChats } = ChatState(); 
+    const { user, setUser, setSelectedChat, chats, setChats } = ChatState(); 
     const { isOpen, onOpen, onClose } = useDisclosure();
 
     const history = useHistory();
     const logoutHandler = () => {
         localStorage.removeItem("userInfo");
+        setUser(null);
         history.push("/");
     };
 
